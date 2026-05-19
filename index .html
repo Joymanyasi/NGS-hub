@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NGS Hub — African Genomics Learning Platform</title>
+<meta name="description" content="A scenario-based genomics learning platform for African clinical and research trainees. Built by Joy Manyasi Kabaka.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0F6E56;
+    --teal-dark: #085041;
+    --teal-light: #E1F5EE;
+    --teal-mid: #5DCAA5;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --coral: #993C1D;
+    --coral-light: #FAECE7;
+    --text: #1a1a18;
+    --text-muted: #5a5a56;
+    --bg: #faf9f6;
+    --border: rgba(0,0,0,0.08);
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--teal-dark);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: white; }
+
+  /* HERO */
+  .hero {
+    background: var(--teal);
+    color: white;
+    padding: 80px 40px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: 30%;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 span {
+    color: var(--teal-mid);
+  }
+
+  .hero-desc {
+    font-size: clamp(16px, 2.5vw, 19px);
+    opacity: 0.85;
+    max-width: 580px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--teal);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* STATS */
+  .stats {
+    background: var(--teal-dark);
+    padding: 24px 40px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    color: white;
+  }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--teal-mid);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 72px 40px;
+  }
+
+  .section-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 48px;
+    font-size: 16px;
+  }
+
+  /* MODULES */
+  .modules-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .module-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    background: white;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .module-card:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 20px rgba(15,110,86,0.1);
+    transform: translateY(-2px);
+  }
+
+  .module-card.locked {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .module-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .module-card:nth-child(1) .module-number { background: var(--teal-light); color: var(--teal); }
+  .module-card:nth-child(2) .module-number { background: var(--purple-light); color: var(--purple); }
+  .module-card:nth-child(3) .module-number { background: var(--amber-light); color: var(--amber); }
+  .module-card:nth-child(4) .module-number { background: var(--coral-light); color: var(--coral); }
+
+  .module-info { flex: 1; }
+
+  .module-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .module-card:nth-child(1) .module-tag { color: var(--teal); }
+  .module-card:nth-child(2) .module-tag { color: var(--purple); }
+  .module-card:nth-child(3) .module-tag { color: var(--amber); }
+  .module-card:nth-child(4) .module-tag { color: var(--coral); }
+
+  .module-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .module-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .module-status {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .status-ready {
+    background: var(--teal-light);
+    color: var(--teal);
+  }
+
+  .status-soon {
+    background: #F1EFE8;
+    color: #5a5a56;
+  }
+
+  /* ABOUT */
+  .about-section {
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .about-text strong {
+    color: var(--text);
+  }
+
+  .about-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .about-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    transition: all 0.2s;
+  }
+
+  .about-link:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .about-link-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .pub-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    background: var(--bg);
+  }
+
+  .pub-journal {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+
+  .pub-title {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .pub-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .pub-link {
+    font-size: 13px;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .pub-link:hover { text-decoration: underline; }
+
+  .affiliation {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--teal-light);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--teal-dark);
+  }
+
+  /* MISSION */
+  .mission-section {
+    background: var(--teal);
+    color: white;
+  }
+
+  .mission-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .mission-inner h2 {
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .mission-inner p {
+    color: rgba(255,255,255,0.8);
+    font-size: 18px;
+    font-style: italic;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 12px;
+  }
+
+  .mission-inner .cta-text {
+    color: var(--teal-mid);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1a1a18;
+    color: rgba(255,255,255,0.5);
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+  }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--teal-mid); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 56px 20px 48px; }
+    .stats { padding: 20px; gap: 24px; }
+    section { padding: 48px 20px; }
+    .about-grid { grid-template-columns: 1fr; }
+    footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">NGS Hub</a>
+  <ul class="nav-links">
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://sequenceafrica.substack.com" target="_blank">Sequence Africa</a></li>
+    <li><a href="mailto:jmanyasa@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">NGS Hub · African Genomics Learning Platform</div>
+    <h1>Genomics training built for <span>African science</span></h1>
+    <p class="hero-desc">Scenario-based sequencing workflows, QC interpretation, and bioinformatics principles — grounded in the diseases, systems, and contexts that matter across the continent.</p>
+    <div class="hero-actions">
+      <a href="./module0.html" class="btn-primary">Start with Module 0 →</a>
+      <a href="#modules" class="btn-secondary">View all modules</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">1</div>
+    <div class="stat-label">Module live</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">4</div>
+    <div class="stat-label">NGS application areas covered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">6</div>
+    <div class="stat-label">Workflow steps explained</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">∞</div>
+    <div class="stat-label">Free to access</div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<section id="modules">
+  <div class="section-inner">
+    <div class="section-eyebrow">Course modules</div>
+    <h2>Start from principles, build to practice</h2>
+    <p class="section-desc">Every module is built around a real biological question grounded in African research and clinical contexts. Principles first, tools second.</p>
+
+    <div class="modules-grid">
+
+      <a href="./module0.html" class="module-card">
+        <div class="module-number">0</div>
+        <div class="module-info">
+          <div class="module-tag">Foundation</div>
+          <div class="module-title">Understanding NGS — Context, Process, and Applications</div>
+          <div class="module-desc">What NGS is, why it matters for Africa, how sequencing moves from sample to data, and the four major application areas — infectious disease, cancer, clinical NGS, and RNA-Seq.</div>
+        </div>
+        <div class="module-status status-ready">Ready</div>
+      </a>
+
+      <div class="module-card locked">
+        <div class="module-number">1</div>
+        <div class="module-info">
+          <div class="module-tag">Technology</div>
+          <div class="module-title">The Sequencing Workflow — Step by Step</div>
+          <div class="module-desc">A deep dive into each step of the NGS workflow — from sample collection and library preparation through to sequencing and data output.</div>
+        </div>
+        <div class="module-status status-soon">Coming soon</div>
+      </div>
+
+      <div class="module-card locked">
+        <div class="module-number">2</div>
+        <div class="module-info">
+          <div class="module-tag">Quality control</div>
+          <div class="module-title">QC Fundamentals — Reading Your First FastQC Report</div>
+          <div class="module-desc">How to assess sequencing data quality, interpret FastQC output, identify problems, and decide whether your data is ready for analysis.</div>
+        </div>
+        <div class="module-status status-soon">Coming soon</div>
+      </div>
+
+      <div class="module-card locked">
+        <div class="module-number">3</div>
+        <div class="module-info">
+          <div class="module-tag">RNA-Seq</div>
+          <div class="module-title">RNA-Seq Analysis — From Reads to Differential Expression</div>
+          <div class="module-desc">A scenario-based walkthrough of a complete RNA-Seq workflow using an African infectious disease case study as the context.</div>
+        </div>
+        <div class="module-status status-soon">Coming soon</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <div class="about-text">
+        <div class="section-eyebrow">About</div>
+        <h2>Built by a scientist who works at the gap</h2>
+        <p>Genomic data has the power to transform how Africa responds to disease — but only if the right systems, training, and people are in place.</p>
+        <p><strong>Joy Manyasi Kabaka</strong> is a molecular biologist focused on applied genomics, sequencing workflows, and scenario-based genomics education for African clinical and research systems.</p>
+        <p>NGS Hub exists because most genomics training was not built for African contexts. This one is.</p>
+
+        <div class="about-links">
+          <a href="https://sequenceafrica.substack.com" target="_blank" class="about-link">
+            <div class="about-link-icon" style="background:#E1F5EE;">🧬</div>
+            Sequence Africa — genomics intelligence from the continent
+          </a>
+          <a href="mailto:jmanyasa@gmail.com" class="about-link">
+            <div class="about-link-icon" style="background:#EEEDFE;">✉️</div>
+            jmanyasa@gmail.com
+          </a>
+          <a href="https://github.com/joymanyasi" target="_blank" class="about-link">
+            <div class="about-link-icon" style="background:#F1EFE8;">⌥</div>
+            github.com/joymanyasi
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-eyebrow">Publication</div>
+        <div class="pub-card">
+          <div class="pub-journal">PLOS Neglected Tropical Diseases · 2020</div>
+          <div class="pub-title">Expansions of chemosensory gene orthologs among selected tsetse fly species and their expressions in Glossina morsitans morsitans</div>
+          <div class="pub-meta">Kabaka JM et al. · First author · RNA-Seq · Infectious disease genomics</div>
+          <a href="https://doi.org/10.1371/journal.pntd.0008341" target="_blank" class="pub-link">Read the paper →</a>
+        </div>
+
+        <div class="affiliation">
+          🔬 Member — Genomics & Biotechnology Workgroup, African Bioethics Network
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="mission-inner">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.5);">The mission</div>
+    <h2>Principles first. Tools second. African science always.</h2>
+    <p>You do not need to be an expert to start. You need to be curious, willing to work through the material, and ready to see what your data can tell you.</p>
+    <div class="cta-text">That is enough. Let us begin.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">NGS Hub</div>
+    <div>Built by Joy Manyasi Kabaka · Part of Sequence Africa</div>
+  </div>
+  <div class="footer-links">
+    <a href="./module0.html">Module 0</a>
+    <a href="https://sequenceafrica.substack.com" target="_blank">Sequence Africa</a>
+    <a href="https://github.com/joymanyasi/ngs-hub" target="_blank">GitHub</a>
+    <a href="https://doi.org/10.1371/journal.pntd.0008341" target="_blank">Publication</a>
+    <a href="mailto:jmanyasa@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
