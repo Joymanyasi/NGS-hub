@@ -15,7 +15,7 @@
 ## The Story
 
 ### Chapter 1: The Heatwaves of Malava
-The morning rain over the Malava forest always smelled like sweet earth and the soil one who is familiar with this area can feel the richness of the African soil. But by the year 2026, those rains had become unpredictable, replaced by harsh, unseasonal heatwaves that turned the red Kakamega soil into fine dust. It was during one of these prolonged dry spells that a strange, aggressive poultry plague swept through Western Kenya, wiping out an entire breed within forty-eight hours.
+The morning rain over the Malava forest always smelled like sweet earth and the soil one who is familiar with this area can feel the richness of the African soil. But in 2026, those rains had become unpredictable, replaced by harsh, unseasonal heatwaves that turned the red Kakamega soil into fine dust. It was during one of these prolonged dry spells that a strange, aggressive poultry plague swept through Western Kenya, wiping out an entire breed within forty-eight hours.
 
 In the village, panic moved faster than the disease. Large agribusiness representatives from the city began arriving in dusty four-wheel-drive trucks, offering expensive, foreign commercial hybrids and proprietary chemical inputs. They promised these imports were the only solution to climate change. But the elders knew better as these fragile, exotic breeds required constant air conditioning and imported feed that no local smallholder could sustain. It was an ecosystem capture disguised as a rescue mission.
 
