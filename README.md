@@ -4,7 +4,7 @@ A scenario-based genomics learning platform designed for African clinical, publi
 
 NGS Hub teaches sequencing workflows, genomics operations, QC interpretation, and bioinformatics reasoning through real-world biological and clinical scenarios grounded in African research and healthcare contexts.
 
-**From sequencing workflows to genomics infrastructure — practical genomics education built for African realities.**
+**From sequencing workflows to genomics infrastructure and practical genomics education built for African realities.**
 
 ---
 
